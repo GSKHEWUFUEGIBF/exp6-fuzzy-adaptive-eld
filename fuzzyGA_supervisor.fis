@@ -1,0 +1,63 @@
+[System]
+Name='fuzzyGA_supervisor'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=3
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Diversity'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 0.05 0.2]
+MF2='Medium':'trimf',[0.05 0.2 0.4]
+MF3='High':'trapmf',[0.2 0.4 1 1]
+
+[Input2]
+Name='Stagnation'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 0.1 0.4]
+MF2='Medium':'trimf',[0.1 0.4 0.7]
+MF3='High':'trapmf',[0.4 0.7 1 1]
+
+[Output1]
+Name='pc'
+Range=[0.5 1]
+NumMFs=3
+MF1='Low':'trimf',[0.5 0.5 0.7]
+MF2='Medium':'trimf',[0.6 0.75 0.9]
+MF3='High':'trimf',[0.8 1 1]
+
+[Output2]
+Name='pm'
+Range=[0 0.3]
+NumMFs=3
+MF1='Low':'trimf',[0 0 0.1]
+MF2='Medium':'trimf',[0.05 0.15 0.25]
+MF3='High':'trimf',[0.2 0.3 0.3]
+
+[Output3]
+Name='ms'
+Range=[0 0.2]
+NumMFs=3
+MF1='Small':'trimf',[0 0 0.02]
+MF2='Medium':'trimf',[0.01 0.05 0.1]
+MF3='Large':'trimf',[0.06 0.2 0.2]
+
+[Rules]
+1 1, 2 2 1 (1) : 1
+1 2, 1 3 2 (1) : 1
+1 3, 1 3 3 (1) : 1
+2 1, 3 1 1 (1) : 1
+2 2, 2 2 2 (1) : 1
+2 3, 2 3 3 (1) : 1
+3 1, 3 1 2 (1) : 1
+3 2, 3 1 2 (1) : 1
+3 3, 2 2 2 (1) : 1
